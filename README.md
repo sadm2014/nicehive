@@ -45,8 +45,11 @@ Perfect! Do the same for all flightsheets which you will use for autoswitching.
 If you like this script - you can donate
 
 BTC 1HSS4RAHXKxaq8ouRh8yy8iVPWHZrjr7hm
+
 ETH 0xFa08cF2e1d6272cDBF8E1F605d24bb1e60A66C29
+
 BCH qqhqquusvjklnq5jq02yxycvuxveyf4q4yv7k6eax0
+
 XLM GCSOBMD5RVZKVYJSICXK7AVKFMAY2TR3Z7A3I2XVKTVUAHPLAK5Y3OAR
 
 I can setup nicehive on your rig (50$/rig), write to my email (sadm __dog__ spnet __dot__ ru)
