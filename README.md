@@ -40,7 +40,7 @@ Perfect! Do the same for all flightsheets which you will use for autoswitching.
 
 8. You can tune __switchPercent__ variable (If profit from change to most profitable flightsheet will be less than switchPercent - script will not switch).
 
-9. If you have many rigs in one farm - in most cases you will need many profiles (if all rigs not use similar hardware). Change __fsPrefix__ variable to something like 'AUTORIG1-' in each copy of nicehive.sh
+9. If you have many rigs in one farm - in most cases you will need many profiles (if all rigs not use similar hardware). Change __fsPrefix__ variable to something like 'AUTORIG1' in each copy of nicehive.sh
 
 If you like this script - you can donate
 
@@ -52,4 +52,4 @@ BCH qqhqquusvjklnq5jq02yxycvuxveyf4q4yv7k6eax0
 
 XLM GCSOBMD5RVZKVYJSICXK7AVKFMAY2TR3Z7A3I2XVKTVUAHPLAK5Y3OAR
 
-I can setup nicehive on your rig (50$/rig), write to my email (sadm __dog__ spnet __dot__ ru)
+I can setup nicehive on your rig (50$ per worker), write me (sadm __dog__ spnet __dot__ ru)
