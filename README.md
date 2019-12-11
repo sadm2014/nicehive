@@ -18,7 +18,7 @@ This is a simple bash script for managing worker flightsheets according to NiceH
 
 4.4. rename current flightsheet to AUTO-X16RV2-220 (last digit is summary hashrate)
 
-4.5. run /hive/sbin/nicehive.sh test it will produce something like
+4.5. run nicehive.sh test it will produce something like
 
 ```
 Fs AUTO-X16RV2-220 daily_profit=0.061486568950332937
@@ -28,7 +28,7 @@ Fs AUTO-X16RV2-220 daily_profit=0.061486568950332937
 
 look at __daily_profit__ - it should be ~0.00063. We see 100 times more and should rename our flightsheet to AUTO-X16RV2-2.2. Only number exponent does matter, it should not be more than 10 times or less 10 times than NiceHash average daily profitability and it will never be equal at all points ;-)
 
-run /hive/sbin/nicehive.sh test it will produce something like
+run nicehive.sh test it will produce something like
 
 ```
 Fs AUTO-X16RV2-2.2 daily_profit=0.00061486568950332937
