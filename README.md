@@ -10,15 +10,15 @@ This is a simple bash script for managing worker flightsheets according to NiceH
 
 4. Work with each flightsheet: 
 
-5.1. run it for 30 min and write down summary rig hashrate (for example 220 mh/s)
+4.1. run it for 30 min and write down summary rig hashrate (for example 220 mh/s)
 
-5.2. login to NiceHash and write down average daily profitability (for example 0.00063 btc)
+4.2. login to NiceHash and write down average daily profitability (for example 0.00063 btc)
 
-5.3. open https://api2.nicehash.com/main/api/v2/public/simplemultialgo/info and write down algo name (for example X16RV2)
+4.3. open https://api2.nicehash.com/main/api/v2/public/simplemultialgo/info and write down algo name (for example X16RV2)
 
-5.4. rename current flightsheet to AUTO-X16RV2-220 (last digit is summary hashrate)
+4.4. rename current flightsheet to AUTO-X16RV2-220 (last digit is summary hashrate)
 
-5.5. run /hive/sbin/nicehive.sh test it will produce something like
+4.5. run /hive/sbin/nicehive.sh test it will produce something like
 
 ```
 Fs AUTO-X16RV2-220 daily_profit=0.061486568950332937
@@ -38,13 +38,13 @@ Fs AUTO-X16RV2-2.2 daily_profit=0.00061486568950332937
 
 Perfect! Do the same for all flightsheets which you will use for autoswitching.
 
-6. Place nicehive.sh to crontab. I suggest run it no more than once per 5 minute.
+5. Place nicehive.sh to crontab. I suggest run it no more than once per 5 minute.
 
-7. Switch rig to any AUTO- profile to start autoswitching. Switching to any other profile (not AUTO-) disables autoswitching.
+6. Switch rig to any AUTO- profile to start autoswitching. Switching to any other profile (not AUTO-) disables autoswitching.
 
-8. You can tune __switchPercent__ variable (If profit from change to most profitable flightsheet will be less than switchPercent - script will not switch).
+7. You can tune __switchPercent__ variable (If profit from change to most profitable flightsheet will be less than switchPercent - script will not switch).
 
-9. If you have many rigs in one farm - in most cases you will need many profiles (if all rigs not use similar hardware). Change __fsPrefix__ variable to something like 'AUTORIG1' in each copy of nicehive.sh
+8. If you have many rigs in one farm - in most cases you will need many profiles (if all rigs not use similar hardware). Change __fsPrefix__ variable to something like 'AUTORIG1' in each copy of nicehive.sh
 
 If you like this script - you can donate
 
