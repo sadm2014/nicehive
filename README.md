@@ -11,9 +11,13 @@ This is a simple bash script for managing worker flightsheets according to NiceH
 4. Work with each flightsheet: 
 
 5.1. run it for 30 min and write down summary rig hashrate (for example 220 mh/s)
+
 5.2. login to NiceHash and write down average daily profitability (for example 0.00063 btc)
+
 5.3. open https://api2.nicehash.com/main/api/v2/public/simplemultialgo/info and write down algo name (for example X16RV2)
+
 5.4. rename current flightsheet to AUTO-X16RV2-220 (last digit is summary hashrate)
+
 5.5. run /hive/sbin/nicehive.sh test it will produce something like
 
 ```
