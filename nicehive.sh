@@ -10,16 +10,26 @@ switchPercent=7
 
 fsPrefix='AUTO'
 
-# login
-response=`curl -s -H "Content-Type: application/json" \
-	-X POST -d "{\"login\":\"$login\",\"password\":\"$password\"}" "$baseUrl/auth/login"`
-[ $? -ne 0 ] && (>&2 echo 'Curl error') && exit 1
-accessToken=`echo "$response" | jq --raw-output '.access_token'`
+if [ ! -e /tmp/nicehive.token ] ; then
+  # login
+  response=`curl -s -H "Content-Type: application/json" \
+	  -X POST -d "{\"login\":\"$login\",\"password\":\"$password\"}" "$baseUrl/auth/login"`
+  [ $? -ne 0 ] && (>&2 echo 'Curl error') && exit 1
+  echo "$response" | jq --raw-output '.access_token' > /tmp/nicehive.token
+fi
+
+accessToken=`cat /tmp/nicehive.token`
 
 # get workers
 response=`curl -s -H "Content-Type: application/json" \
 	-H "Authorization: Bearer $accessToken" "$baseUrl/farms/$farm/workers"`
 [ $? -ne 0 ] && (>&2 echo 'Curl error') && exit 1
+
+if `echo $response | grep -q 'Unauthenticated'` ; then
+	rm /tmp/nicehive.token
+	exit
+fi
+
 echo "$response" | jq '.data[]' > /tmp/nicehive.workers
 
 CURRENTFS=`cat /tmp/nicehive.workers | jq -r ". | select (.id == $worker) | .flight_sheet.name"`
@@ -35,6 +45,8 @@ response=`curl -s -H "Content-Type: application/json" \
 echo "$response" | jq '.data[]' > /tmp/nicehive.fs
 
 wget -q https://api2.nicehash.com/main/api/v2/public/simplemultialgo/info -O -| jq ".miningAlgorithms[]" > /tmp/nicehive.prices
+
+date
 
 BESTPROFIT=0
 declare -A DAILYPROFIT
@@ -68,3 +80,4 @@ if (( $(echo "(${DAILYPROFIT[$CURRENTALGO]} * (100 + $switchPercent) / 100) < $B
 else
 	echo "Profit from change to most profitable fs will be less than $switchPercent% - do nothing"
 fi
+
