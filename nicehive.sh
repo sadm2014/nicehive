@@ -53,7 +53,7 @@ declare -A DAILYPROFIT
 for LINE in `cat /tmp/nicehive.fs | jq -r '.name' | grep $fsPrefix` ; do
  ALGO=`echo $LINE | cut -d '-' -f 2`
  RATE=`echo $LINE | cut -d '-' -f 3`
- PRICE=`cat /tmp/nicehive.prices | jq -r ". | select (.algorithm == \"$ALGO\") | .paying"`
+ PRICE=`cat /tmp/nicehive.prices | jq -r ". | select (.algorithm == \"$ALGO\") | .paying" | awk '{printf("%.8f\n", $1)}'`
  DAILYPROFIT[$ALGO]=`echo "$RATE * $PRICE" | bc | sed -e 's/^-\./-0./' -e 's/^\./0./'`
  echo Fs $fsPrefix-$ALGO-$RATE daily_profit=${DAILYPROFIT[$ALGO]}
  if (( $(echo "$BESTPROFIT < ${DAILYPROFIT[$ALGO]}" |bc -l) )) ; then
