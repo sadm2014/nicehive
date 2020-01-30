@@ -46,6 +46,32 @@ Perfect! Do the same for all flightsheets which you will use for autoswitching.
 
 8. If you have many workers in one farm - in most cases you will need many profiles (if all workers not use similar hardware). Change __fsPrefix__ variable to something like 'AUTO_WORKER1' in each copy of nicehive.sh
 
+__Fast install on worker__
+
+Execute these commands on worker via Hive web UI:
+
+1. Download script and make it executable:
+
+```wget https://github.com/sadm2014/nicehive/raw/master/nicehive.sh -O /hive/sbin/nicehive.sh ; chmod a+rx /hive/sbin/nicehive.sh```
+
+2. Change __login__, __password__, __farm__ and __worker__ variables
+
+```sed -i -e "s/'HIVEOS_LOGIN'/'your_login'/g" -e "s/'HIVEOS_PASS'/'your_password'/g" -e "s/'FARMID'/'farm_id'/g" -e "s/'WORKERID'/'this_worker_id'/g" /hive/sbin/nicehive.sh```
+
+3. Change profile to any AUTO-*
+
+4. Test installation:
+
+```/hive/sbin/nicehive.sh test```
+
+5. Add line __*/5 * * * * /hive/sbin/nicehive.sh > /tmp/nicehive.log__ to crontab:
+
+```echo Ki81ICogKiAqICogL2hpdmUvc2Jpbi9uaWNlaGl2ZS5zaCA+IC90bXAvbmljZWhpdmUubG9nCg== | base64 -d >> /hive/etc/crontab.root ; sync```
+
+6. Reboot worker
+
+You can always see what is going on, just do ```cat /tmp/nicehive.log``` (wait ~5 min after reboot)
+
 If you like this script - you can donate
 
 BTC 1HSS4RAHXKxaq8ouRh8yy8iVPWHZrjr7hm
