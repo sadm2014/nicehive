@@ -22,7 +22,7 @@ accessToken=`cat /tmp/nicehive.token`
 
 # get workers
 response=`curl -s -H "Content-Type: application/json" \
-	-H "Authorization: Bearer $accessToken" "$baseUrl/farms/$farm/workers"`
+	-H "Authorization: Bearer $accessToken" "$baseUrl/farms/$farm/workers/$worker"`
 [ $? -ne 0 ] && (>&2 echo 'Curl error') && exit 1
 
 if `echo $response | grep -q 'Unauthenticated'` ; then
@@ -30,12 +30,12 @@ if `echo $response | grep -q 'Unauthenticated'` ; then
 	exit
 fi
 
-echo "$response" | jq '.data[]' > /tmp/nicehive.workers
+echo "$response" > /tmp/nicehive.worker
 
-CURRENTFS=`cat /tmp/nicehive.workers | jq -r ". | select (.id == $worker) | .flight_sheet.name"`
+CURRENTFS=`cat /tmp/nicehive.worker | jq -r ". | select (.id == $worker) | .flight_sheet.name"`
 if ! `echo $CURRENTFS | grep -q ^$fsPrefix-` ; then
-	echo Manual fs, do nothing. Change fs to any $fsPrefix-* for autoswitching
-	exit
+    echo Manual fs, do nothing. Change fs to any $fsPrefix-* for autoswitching
+    exit
 fi
 
 # get farms
